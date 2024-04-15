@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('static',filename= 'styles.css')}}">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css' rel='stylesheet' />
+    <title>Side Bar</title>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <i class="bx bx-lg bxl-codepen"></i>
+                <span>Code Commerce</span>
+            </div>
+            <i class="bx bx-sm bx-menu" id="btn"></i>
+        </div>
+        <div class="user">
+            <img src="../static/src/img/WIN_20240303_14_40_54_Pro.jpg" alt="me" class="user-img">
+            <p class="bold">Kumar Anubhav</p>
+        </div>
+        <ul>
+            <li>
+                <a href="/">
+                    <i class='bx bx-sm bxs-dashboard bx-tada-hover' ></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-sm bx-home-alt bx-tada-hover' ></i>
+                    <span class="nav-item">Inventory</span>
+                </a>
+
+            </li>
+            <li>
+                <a href="/calender">
+                    <i class='bx bx-sm bx-calendar bx-tada-hover' ></i>
+                    <span class="nav-item">Calendar</span>
+                </a>
+                <span class="tooltip">Categories</span>
+            </li>
+            <li>
+                <a href="/live">
+                    <i class='bx bx-sm bx-movie-play bx-tada-hover' ></i>
+                    <span class="nav-item">Live</span>
+                </a>
+                <span class="tooltip">Products</span>
+            </li>
+            
+            <li>
+                <a href="#">
+                    <i class='bx bx-sm bx-bot bx-tada-hover' ></i>
+                    <span class="nav-item">Live</span>
+                </a>
+                <span class="tooltip">Products</span>
+            </li>
+            
+            
+            <li>
+                <a href="#">
+                    <i class='bx bx-sm bx-cog bx-tada-hover' ></i>
+                    <span class="nav-item">Shipping</span>
+                </a>
+                <span class="tooltip">Shipping</span>
+            </li>
+            
+        </ul>
+    </div>
+
+    {% block body %}{% endblock %}
+
+</div>
+
+</body>
+<script>
+    let btn = document.querySelector('#btn');
+    let sidebar = document.querySelector('.sidebar');
+
+    btn.onclick  = function(){
+        sidebar.classList.toggle('active');
+    }
+</script>
+</html>

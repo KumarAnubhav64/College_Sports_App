@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+<body>
+    
+<div class="main-content">
+    <div class="container">
+    <h1>Main Page</h1>
+    
+    <!-- Example of embedding an external webpage -->
+    <iframe width="560" height="315" src="{{live}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <!-- Example of embedding an HTML page within the same domain -->
+    <iframe src="embed.html" width="600" height="400" frameborder="0"></iframe>
+</div>
+</div>
+</body>
+
+
+
+{% endblock %}
