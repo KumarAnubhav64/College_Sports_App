@@ -6,21 +6,26 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{url_for('static',filename= 'styles.css')}}">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css' rel='stylesheet' />
+    
     <title>Side Bar</title>
 </head>
 <body>
-
+    
     <div class="sidebar">
         <div class="top">
             <div class="logo">
                 <i class="bx bx-lg bxl-codepen"></i>
-                <span>Code Commerce</span>
+                <span></span>
             </div>
             <i class="bx bx-sm bx-menu" id="btn"></i>
         </div>
         <div class="user">
             <img src="../static/src/img/WIN_20240303_14_40_54_Pro.jpg" alt="me" class="user-img">
-            <p class="bold">Kumar Anubhav</p>
+            {% if username %}
+        <p class="bold">Welcome, {{ username }}!</p>
+        {% else %}
+        <p class="bold">Welcome, Guest!</p>
+        {% endif %}
         </div>
         <ul>
             <li>
@@ -37,7 +42,7 @@
 
             </li>
             <li>
-                <a href="/calender">
+                <a href="/calendar">
                     <i class='bx bx-sm bx-calendar bx-tada-hover' ></i>
                     <span class="nav-item">Calendar</span>
                 </a>
@@ -76,6 +81,7 @@
 </div>
 
 </body>
+
 <script>
     let btn = document.querySelector('#btn');
     let sidebar = document.querySelector('.sidebar');
@@ -84,4 +90,5 @@
         sidebar.classList.toggle('active');
     }
 </script>
+
 </html>
