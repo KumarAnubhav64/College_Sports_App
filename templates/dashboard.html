@@ -1,14 +1,109 @@
 {% extends 'layout.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 {% block body %}
 <div class="main-content">
+    
+
+    <body>
+
+        <nav>
+            <div class="logo">
+          
+            </div>
+            <ul class="nav-links">
+              <p>Dashboard</p>
+            </ul>
+            <div class="nav-icons">
+              <div class="notification">
+                <i class='bx bxs-bell bx-tada-hover' ></i>
+                <span class="badge">3</span>
+              </div> 
+              <div class="logout" >
+                <a href="/logout">
+                <i class='bx bx-log-in-circle'  ></i></a>
+              </div>
+            </div>
+            <div class="burger">
+              <div class="line1"></div>
+              <div class="line2"></div>
+              <div class="line3"></div>
+            </div>
+          </nav>
+
+    
+      <main>
+        <section class="profile">
+          <div class="profile-header">
+            <div class="profile-cover">
+              <img src="../static/src/img/abstract-gradient-streak-background-vector.jpg" alt="Cover Photo">
+            </div>
+            <div class="profile-info">
+              <img src="../static/src/img/WIN_20240303_14_40_54_Pro.jpg" alt="Profile Picture">
+              <div class="profile-details">
+                <h2>John Doe</h2>
+                <p>@johndoe</p>
+                <div class="profile-stats">
+                  <div>
+                    <span>Tweets</span>
+                    <span>1,234</span>
+                  </div>
+                  <div>
+                    <span>Following</span>
+                    <span>456</span>
+                  </div>
+                  <div>
+                    <span>Followers</span>
+                    <span>789</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="profile-tabs">
+            <div class="tab active">Tweets</div>
+            <div class="tab">Replies</div>
+            <div class="tab">Media</div>
+            <div class="tab">Likes</div>
+          </div>
+        </section>
+        <section class="feed">
+          <div class="tweet">
+            <div class="tweet-header">
+              <img src="../static/src/img/WIN_20240303_14_40_54_Pro.jpg" alt="Profile Picture">
+              <div>
+                <h3>John Doe</h3>
+                <p>@johndoe</p>
+              </div>
+            </div>
+            <div class="tweet-content">
+              <p>This is a sample tweet. You can share your thoughts, ideas, or anything else here!</p>
+            </div>
+            <div class="tweet-actions">
+              <i class="far fa-comment"></i>
+              <i class="fas fa-retweet"></i>
+              <i class="far fa-heart"></i>
+              <i class="far fa-share-square"></i>
+            </div>
+          </div>
+        </section>
+      </main>
+    
+      <script>// Toggle active tab
+        const tabs = document.querySelectorAll('.tab');
+        
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+          });
+        });</script>
+
+</div>
+
+{% endblock %}
 <div class="row justify-content-center">
     <div class="col-sm-8">
         <h2>Dashboard </h2>
         <p><b>Name:</b> {{username}}</p> 
  
         <a href="/logout" class="btn btn-dark">Logout</a>
-</div>
-    
-</div>
-
-{% endblock %}

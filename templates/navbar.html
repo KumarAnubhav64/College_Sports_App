@@ -1,11 +1,26 @@
-<nav class="navbar">
-    <div class="container">
-        <div class="logo">Logo</div>
-        <ul class="nav-links">
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
-            <li><a href="{{ url_for('services') }}">Services</a></li>
-            <li><a href="{{ url_for('contact') }}">Contact</a></li>
-        </ul>
-    </div>
-</nav>
+<div class="main-content">
+    <nav>
+      <div class="logo">
+        <a href="#">
+          <img src="logo.png" alt="Logo">
+        </a>
+      </div>
+      <ul class="nav-links">
+        <p>Calender</p>
+      </ul>
+      <div class="nav-icons">
+        <div class="notification">
+          <i class="fas fa-bell"></i>
+          <span class="badge">3</span>
+        </div>
+        <div class="logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </div>
+      </div>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>

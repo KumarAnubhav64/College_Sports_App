@@ -1,0 +1,149 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% block body %}
+<div class="main-content">
+    <nav>
+        <div class="logo">
+      
+        </div>
+        <ul class="nav-links">
+          <p>Inventory Management</p>
+        </ul>
+        <div class="nav-icons">
+          <div class="notification">
+            <i class='bx bxs-bell bx-tada-hover' ></i>
+            <span class="badge">3</span>
+          </div> 
+          <div class="logout" >
+            <a href="/logout">
+            <i class='bx bx-log-in-circle'  ></i></a>
+          </div>
+        </div>
+        <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </nav>
+<div class="container mt-5">
+    <!-- Add Form -->
+    <form id="addRowForm" class="mb-3" method="POST">
+        <div class="row">
+            <div class="col-sm-4">
+                <input type="text" name="item_name" class="form-control" placeholder="Item Name">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" name="quantity" class="form-control" placeholder="Quantity">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" name="given_by" class="form-control" placeholder="Given By">
+            </div>
+            <div class="col-sm-2">
+                <input type="text" name="given_to" class="form-control" placeholder="Given To">
+            </div>
+            <div class="col-sm-2">
+                <input type="datetime-local" name="start_time" class="form-control" placeholder="Start Time">
+            </div>
+            <div class="col-sm-2">
+                <input type="datetime-local" name="end_time" class="form-control" placeholder="End Time">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">Add Row</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Given By</th>
+                    <th>Given To</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data.items %}
+                    <tr id="row_{{ item.id }}">
+                        <td>{{ item.item_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.given_by }}</td>
+                        <td>{{ item.given_to }}</td>
+                        <td>{{ item.start_time }}</td>
+                        <td>{{ item.end_time }}</td>
+                        <td>
+                            <button class="btn btn-danger delete-btn" data-id="{{ item.id }}">Delete</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination Navbar at the Bottom -->
+    <nav class="nav-pagination mt-3">
+        <ul class="pagination justify-content-center">
+            {% if data.has_prev %}
+                <li class="page-item"><a class="page-link" href="?page={{ data.prev_num }}">Previous</a></li>
+            {% endif %}
+            {% for page_num in data.iter_pages() %}
+                {% if page_num %}
+                    <li class="page-item {% if data.page == page_num %}active{% endif %}">
+                        <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                {% endif %}
+            {% endfor %}
+            {% if data.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ data.next_num }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#addRowForm').submit(function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/add_row',
+                    data: formData,
+                    success: function(response) {
+                        alert(response.message);
+                        location.reload(); // Refresh page to see added row
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            });
+
+            $('.delete-btn').click(function() {
+                var rowId = $(this).data('id');
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/delete_row/' + rowId,
+                    success: function(response) {
+                        alert(response.message);
+                        $('#row_' + rowId).remove(); // Remove deleted row from UI
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+    </div>
+{% endblock %}
